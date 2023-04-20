@@ -17,7 +17,7 @@ dataset_config = BaseDatasetConfig(
     formatter="ljspeech",
     meta_file_train="metadata.csv",
     # meta_file_attn_mask=os.path.join(output_path, "../LJSpeech-1.1/metadata_attn_mask.txt"),
-    path=os.path.join(output_path, "../sadhguruSpeech/"),
+    path=os.path.join(output_path, "../sadhguruSpeech_resampled/"),
 )
 
 audio_config = BaseAudioConfig(
@@ -65,7 +65,7 @@ if not config.model_args.use_aligner:
     model_path, config_path, _ = manager.download_model("tts_models/en/ljspeech/tacotron2-DCA")
     # TODO: make compute_attention python callable
     os.system(
-        f"python TTS/bin/compute_attention_masks.py --model_path {model_path} --config_path {config_path} --dataset ljspeech --dataset_metafile metadata.csv --data_path ./recipes/ljspeech/sadhguruSpeech/  --use_cuda true"
+        f"python TTS/bin/compute_attention_masks.py --model_path {model_path} --config_path {config_path} --dataset ljspeech --dataset_metafile metadata.csv --data_path ./recipes/ljspeech/sadhguruSpeech_resampled/  --use_cuda true"
     )
 
 # INITIALIZE THE AUDIO PROCESSOR
